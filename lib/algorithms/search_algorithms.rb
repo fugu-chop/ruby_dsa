@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# ArraySearchAlgorithms represents a series of search methods on a sorted array
-class ArraySearchAlgorithms
+# SearchAlgorithms represents a series of search methods on a sorted array
+class SearchAlgorithms
   attr_reader :array
 
   def initialize(arr)
