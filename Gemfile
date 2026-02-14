@@ -1,4 +1,7 @@
-# Gemfile
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "rspec"
+# Gemfile
+source 'https://rubygems.org'
+
+gem 'rspec'
+gem 'rubocop'
