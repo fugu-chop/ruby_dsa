@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # ArraySearchAlgorithms represents a series of search methods on a sorted array
 class ArraySearchAlgorithms
   attr_reader :array
@@ -8,19 +10,20 @@ class ArraySearchAlgorithms
 
   # binary_search searches the content of a provided Array for value.
   # Expects the provided array to be sorted in ascending order.
-  # 
+  #
   # @param search_value [Any] - the value to search for
-  # @return [Integer, nil] - the index at which the element exists, 
+  # @return [Integer, nil] - the index at which the element exists,
   #   or nil if the element cannot be found
+  # rubocop:disable Metrics/MethodLength
   def binary_search(search_value)
     start_idx = 0
     end_idx = array.length - 1
 
     while start_idx <= end_idx
       midpoint = (end_idx + start_idx) / 2
-      
+
       if search_value == array[midpoint]
-        return midpoint   
+        return midpoint
       elsif array[midpoint] < search_value
         start_idx = midpoint + 1
       else
@@ -28,6 +31,7 @@ class ArraySearchAlgorithms
       end
     end
 
-    return nil
+    nil
   end
+  # rubocop:enable Metrics/MethodLength
 end
