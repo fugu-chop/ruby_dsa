@@ -10,6 +10,8 @@ class SortAlgorithms
   end
 
   def bubble_sort
+    # #dup allows us to modify the copy of the array
+    # where #clone does not
     temp = array.dup
     end_ptr = temp.length - 1
     is_sorted = false
@@ -17,6 +19,7 @@ class SortAlgorithms
     until is_sorted
       is_sorted = true
 
+      # three dots is exclusive of the final element
       (0...end_ptr).each do |idx|
         if temp[idx] > temp[idx + 1]
           temp[idx], temp[idx + 1] = temp[idx + 1], temp[idx]
