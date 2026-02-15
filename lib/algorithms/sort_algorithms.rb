@@ -9,7 +9,6 @@ class SortAlgorithms
     @array.freeze
   end
 
-  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def bubble_sort
     # #dup allows us to modify the copy of the array
@@ -34,6 +33,5 @@ class SortAlgorithms
 
     temp
   end
-  # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/AbcSize
 end
