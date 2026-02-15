@@ -3,7 +3,7 @@
 require './lib/algorithms/search_algorithms'
 
 describe SearchAlgorithms do
-  describe '.binary_search' do
+  describe '#binary_search' do
     context 'given a sorted array' do
       arr = SearchAlgorithms.new([1, 2, 3, 4, 5, 6])
       it 'returns the index of the element when the element exists' do

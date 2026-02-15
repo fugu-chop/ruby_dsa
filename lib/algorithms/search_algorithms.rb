@@ -14,7 +14,6 @@ class SearchAlgorithms
   # @param search_value [Any] - the value to search for
   # @return [Integer, nil] - the index at which the element exists,
   #   or nil if the element cannot be found
-  # rubocop:disable Metrics/MethodLength
   def binary_search(search_value)
     start_idx = 0
     end_idx = array.length - 1
@@ -33,5 +32,4 @@ class SearchAlgorithms
 
     nil
   end
-  # rubocop:enable Metrics/MethodLength
 end
