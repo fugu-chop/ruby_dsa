@@ -10,6 +10,10 @@ class SortAlgorithms
   end
 
   # rubocop:disable Metrics/AbcSize
+  # bubble_sort sorts a provided array (not in-place)
+  # using the bubble sort algorithm.
+  #
+  # @return [Array] - the sorted array
   def bubble_sort
     # #dup allows us to modify the copy of the array
     # where #clone does not
@@ -33,5 +37,14 @@ class SortAlgorithms
 
     temp
   end
+
   # rubocop:enable Metrics/AbcSize
+  #
+  #
+  # selection_sort sorts a provided array (not in-place)
+  # using the selection sort algorithm.
+  #
+  # @return [Array] - the sorted array
+  def selection_sort
+  end
 end
