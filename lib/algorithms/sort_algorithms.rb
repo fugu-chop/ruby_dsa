@@ -10,6 +10,7 @@ class SortAlgorithms
   end
 
   # rubocop:disable Metrics/AbcSize
+  #
   # bubble_sort sorts a provided array (not in-place)
   # using the bubble sort algorithm.
   #
@@ -40,7 +41,6 @@ class SortAlgorithms
 
   # rubocop:enable Metrics/AbcSize
   #
-  #
   # selection_sort sorts a provided array (not in-place)
   # using the selection sort algorithm.
   #
@@ -51,12 +51,43 @@ class SortAlgorithms
 
     while start_idx < temp.length - 1
       lowest_idx = start_idx
-      (start_idx..temp.length - 1).each do |idx|
+      (start_idx...temp.length).each do |idx|
         lowest_idx = idx if temp[idx] < temp[lowest_idx]
       end
       # no conditional check for swap because the check itself is an operation
       temp[lowest_idx], temp[start_idx] = temp[start_idx], temp[lowest_idx]
       start_idx += 1
+    end
+
+    temp
+  end
+
+  # insertion_sort sorts a provided array (not in-place)
+  # using the insertion sort algorithm.
+  #
+  # @return [Array] - the sorted array
+  def insertion_sort
+    temp = array.dup
+
+    (1...temp.length).each do |idx|
+      temp_value = temp[idx]
+      position = idx - 1
+
+      until position.negative?
+        break unless temp[position] > temp_value
+
+        # shift the larger value across, replacing
+        # the smaller value as we have saved it
+        # to temp_value
+        temp[position + 1] = temp[position]
+        position -= 1
+      end
+
+      # replace temp value due to shifts rightward
+      # The +1 is because `position -= 1` will
+      # execute once more than necessary on
+      # the final iteration
+      temp[position + 1] = temp_value
     end
 
     temp
