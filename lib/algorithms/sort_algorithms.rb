@@ -83,10 +83,10 @@ class SortAlgorithms
         position -= 1
       end
 
-      # replace temp value due to overwrites
+      # replace temp value due to shifts rightward
       # The +1 is because `position -= 1` will
-      # execute once more than necessary in
-      # preparation for a further comparison
+      # execute once more than necessary on
+      # the final iteration
       temp[position + 1] = temp_value
     end
 
