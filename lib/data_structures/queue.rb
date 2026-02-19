@@ -12,7 +12,7 @@ class Queue
   # @return [Any] - returns the element added
   def enqueue(element)
     @queue << element
-    @queue.last
+    element
   end
 
   # dequeue removes the first item of the queue
