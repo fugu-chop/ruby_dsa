@@ -1,3 +1,7 @@
 Metrics/MethodLength:
   Exclude:
     - 'lib/algorithms/*.rb'
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/algorithms/*.rb'
+

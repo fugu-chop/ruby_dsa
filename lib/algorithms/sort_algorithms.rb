@@ -6,10 +6,8 @@ class SortAlgorithms
 
   def initialize(arr)
     @array = arr
-    @array.freeze
   end
 
-  # rubocop:disable Metrics/AbcSize
   #
   # bubble_sort sorts a provided array (not in-place)
   # using the bubble sort algorithm.
@@ -39,7 +37,6 @@ class SortAlgorithms
     temp
   end
 
-  # rubocop:enable Metrics/AbcSize
   #
   # selection_sort sorts a provided array (not in-place)
   # using the selection sort algorithm.
@@ -91,5 +88,41 @@ class SortAlgorithms
     end
 
     temp
+  end
+
+  def quicksort(left_idx = 0, right_idx = @array.length - 1)
+    # Subarray is only one element
+    return if right_idx - left_idx <= 0
+
+    pivot_idx = partition!(left_idx, right_idx)
+
+    quicksort(left_idx, pivot_idx - 1)
+    quicksort(pivot_idx + 1, right_idx)
+  end
+
+  private
+
+  def partition!(left_ptr, right_ptr)
+    # Pin pivot to last item in array
+    pivot_idx = right_ptr
+    pivot = @array[pivot_idx]
+
+    # Right pointer starts left of pivot
+    right_ptr -= 1
+
+    while true
+      left_ptr += 1 while @array[left_ptr] < pivot
+
+      right_ptr -= 1 while @array[right_ptr] > pivot
+
+      break if left_ptr >= right_ptr
+
+      @array[left_ptr], @array[right_ptr] = @array[right_ptr], @array[left_ptr]
+      left_ptr += 1
+    end
+
+    @array[left_ptr], @array[pivot_idx] = @array[pivot_idx], @array[left_ptr]
+
+    left_ptr
   end
 end
