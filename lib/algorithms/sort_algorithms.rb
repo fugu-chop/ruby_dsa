@@ -9,10 +9,10 @@ class SortAlgorithms
   end
 
   #
-  # bubble_sort sorts a provided array in-place
-  # using the bubble sort algorithm.
+  # bubble_sort sorts a provided array in ascending order
+  # in-place using the bubble sort algorithm.
   #
-  # @return [Array] - the sorted array
+  # @return [nil] - the array is sorted in place
   def bubble_sort
     end_ptr = array.length - 1
     is_sorted = false
@@ -33,10 +33,10 @@ class SortAlgorithms
   end
 
   #
-  # selection_sort sorts a provided array in-place
-  # using the selection sort algorithm.
+  # selection_sort sorts a provided array in ascending
+  # order in-place using the selection sort algorithm.
   #
-  # @return [Array] - the sorted array
+  # @return [nil] - the array is sorted in place
   def selection_sort
     start_idx = 0
 
@@ -51,10 +51,10 @@ class SortAlgorithms
     end
   end
 
-  # insertion_sort sorts a provided array in-place
-  # using the insertion sort algorithm.
+  # insertion_sort sorts a provided array in ascending
+  # order in-place using the insertion sort algorithm.
   #
-  # @return [Array] - the sorted array
+  # @return [nil] - the array is sorted in place
   def insertion_sort
     (1...array.length).each do |idx|
       temp_value = array[idx]
@@ -78,6 +78,15 @@ class SortAlgorithms
     end
   end
 
+  # quicksort sorts a provided array in ascending
+  # order in-place using the quicksort algorithm
+  # by recursively partitioning subarrays.
+  #
+  # @param left_idx [Integer] - the left boundary of the array
+  # to partition
+  # @param right_idx [Integer] - the right boundary of the array
+  # to partition
+  # @return [nil] - the array is sorted in place
   def quicksort(left_idx = 0, right_idx = @array.length - 1)
     # Subarray is only one element
     return if right_idx - left_idx <= 0
@@ -90,6 +99,16 @@ class SortAlgorithms
 
   private
 
+  # partition ensures that the element of an array
+  # at a 'pivot' index (always set to the last
+  # element of the array) is correctly placed within
+  # the context of an array (ascending order).
+  #
+  # @param left_ptr [Integer] - the left index where
+  # the partition process begins
+  # @param right_ptr [Integer] - the right index where
+  # the partition process begins
+  # @return [Integer] - the new pivot index
   def partition!(left_ptr, right_ptr)
     # Pin pivot to last item in array
     pivot_idx = right_ptr
@@ -111,6 +130,7 @@ class SortAlgorithms
 
     @array[left_ptr], @array[pivot_idx] = @array[pivot_idx], @array[left_ptr]
 
+    # return what is the new pivot index
     left_ptr
   end
 end
