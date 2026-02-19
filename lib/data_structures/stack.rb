@@ -12,6 +12,7 @@ class Stack
   # @return [Any] - returns the element added
   def push(element)
     @stack << element
+    element
   end
 
   # pop removes an element from the stack and returns it
