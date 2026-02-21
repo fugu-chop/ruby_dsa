@@ -37,23 +37,24 @@ class SearchAlgorithms
     nil
   end
 
-  # quickselect finds the `idx`th element of an array, sorted
+  # quickselect finds the nth lowest element of an array, sorted
   # in ascending order.
   #
-  # @param search_idx [Integer] - the `idx`th lowest value to search for
+  # @param nth_value [Integer] - the nth lowest value to search
+  # for assuming the array is sorted in ascending order
   # @param left_idx [Integer] - the left boundary of the array
   # @param right_idx [Integer] - the right boundary of the array
   # @return [Integer] - the element at `idx` position, if the array
   # was sorted ascending.
-  def quickselect(search_idx, left_idx = 0, right_idx = array.length - 1)
+  def quickselect(nth_value, left_idx = 0, right_idx = array.length - 1)
     return array[left_idx] if right_idx - left_idx <= 0
 
     pivot_index = partition!(array, left_idx, right_idx)
-    if search_idx < pivot_index
-      quickselect(search_idx, left_idx, pivot_index - 1)
-    elsif search_idx > pivot_index
-      quickselect(search_idx, pivot_index + 1, right_idx)
-    else # if search_idx == pivot_index
+    if nth_value < pivot_index
+      quickselect(nth_value, left_idx, pivot_index - 1)
+    elsif nth_value > pivot_index
+      quickselect(nth_value, pivot_index + 1, right_idx)
+    else # if nth_value == pivot_index
       array[pivot_index]
     end
   end
