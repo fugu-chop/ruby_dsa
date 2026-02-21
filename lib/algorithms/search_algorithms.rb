@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require './lib/algorithms/partitionable'
+
 # SearchAlgorithms represents a series of search methods on a sorted array
 class SearchAlgorithms
+  include Partitionable
+
   attr_reader :array
 
   def initialize(arr)
@@ -31,5 +35,26 @@ class SearchAlgorithms
     end
 
     nil
+  end
+
+  # quickselect finds the `idx`th element of an array, sorted
+  # in ascending order.
+  #
+  # @param search_idx [Integer] - the `idx`th lowest value to search for
+  # @param left_idx [Integer] - the left boundary of the array
+  # @param right_idx [Integer] - the right boundary of the array
+  # @return [Integer] - the element at `idx` position, if the array
+  # was sorted ascending.
+  def quickselect(search_idx, left_idx = 0, right_idx = array.length - 1)
+    return array[left_idx] if right_idx - left_idx <= 0
+
+    pivot_index = partition!(array, left_idx, right_idx)
+    if search_idx < pivot_index
+      quickselect(search_idx, left_idx, pivot_index - 1)
+    elsif search_idx > pivot_index
+      quickselect(search_idx, pivot_index + 1, right_idx)
+    else # if search_idx == pivot_index
+      array[pivot_index]
+    end
   end
 end
