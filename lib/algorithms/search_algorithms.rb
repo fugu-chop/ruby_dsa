@@ -2,7 +2,8 @@
 
 require './lib/algorithms/partitionable'
 
-# SearchAlgorithms represents a series of search methods on a sorted array
+# SearchAlgorithms represents a series of search methods on an array
+# which may or may not be sorted in ascending order
 class SearchAlgorithms
   include Partitionable
 

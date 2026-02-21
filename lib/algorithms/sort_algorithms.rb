@@ -2,7 +2,8 @@
 
 require './lib/algorithms/partitionable'
 
-# SortAlgorithms represents a series of sort methods on an unsorted array
+# SortAlgorithms represents a series of methods to sort an
+# unsorted array in ascending order
 class SortAlgorithms
   attr_reader :array
 
@@ -12,7 +13,6 @@ class SortAlgorithms
     @array = arr
   end
 
-  #
   # bubble_sort sorts a provided array in ascending order
   # in-place using the bubble sort algorithm.
   #
@@ -81,7 +81,7 @@ class SortAlgorithms
     end
   end
 
-  # quicksort sorts a provided array in ascending
+  # quick_sort sorts a provided array in ascending
   # order in-place using the quicksort algorithm
   # by recursively partitioning subarrays.
   #
@@ -90,7 +90,7 @@ class SortAlgorithms
   # @param right_idx [Integer] - the right boundary of the array
   # to partition
   # @return [nil] - the array is sorted in place
-  def quicksort(left_idx = 0, right_idx = @array.length - 1)
+  def quick_sort(left_idx = 0, right_idx = @array.length - 1)
     # Subarray is only one element
     return if right_idx - left_idx <= 0
 
