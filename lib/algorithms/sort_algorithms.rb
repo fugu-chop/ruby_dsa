@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require './lib/algorithms/partitionable'
+
 # SortAlgorithms represents a series of sort methods on an unsorted array
 class SortAlgorithms
   attr_reader :array
+
+  include Partitionable
 
   def initialize(arr)
     @array = arr
@@ -90,45 +94,9 @@ class SortAlgorithms
     # Subarray is only one element
     return if right_idx - left_idx <= 0
 
-    pivot_idx = partition!(left_idx, right_idx)
+    pivot_idx = partition!(@array, left_idx, right_idx)
 
     quicksort(left_idx, pivot_idx - 1)
     quicksort(pivot_idx + 1, right_idx)
-  end
-
-  private
-
-  # partition ensures that the element of an array
-  # at a 'pivot' index (always set to the last
-  # element of the array) is correctly placed within
-  # the context of an array (ascending order).
-  #
-  # @param left_ptr [Integer] - the left index where
-  # the partition process begins
-  # @param right_ptr [Integer] - the right index where
-  # the partition process begins
-  # @return [Integer] - the new pivot index
-  def partition!(left_ptr, right_ptr)
-    # Pin pivot to last item in array
-    pivot_idx = right_ptr
-    pivot = @array[pivot_idx]
-
-    # Right pointer starts left of pivot
-    right_ptr -= 1
-
-    while true
-      left_ptr += 1 while @array[left_ptr] < pivot
-      right_ptr -= 1 while @array[right_ptr] > pivot
-
-      break if left_ptr >= right_ptr
-
-      @array[left_ptr], @array[right_ptr] = @array[right_ptr], @array[left_ptr]
-      left_ptr += 1
-    end
-
-    @array[left_ptr], @array[pivot_idx] = @array[pivot_idx], @array[left_ptr]
-
-    # return what is the new pivot index
-    left_ptr
   end
 end
