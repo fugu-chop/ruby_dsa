@@ -32,7 +32,6 @@ class SortAlgorithms
     end
   end
 
-  #
   # selection_sort sorts a provided array in ascending
   # order in-place using the selection sort algorithm.
   #
@@ -119,7 +118,6 @@ class SortAlgorithms
 
     while true
       left_ptr += 1 while @array[left_ptr] < pivot
-
       right_ptr -= 1 while @array[right_ptr] > pivot
 
       break if left_ptr >= right_ptr
