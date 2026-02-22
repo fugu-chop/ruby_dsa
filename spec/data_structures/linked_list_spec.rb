@@ -43,7 +43,7 @@ describe LinkedList do
     end
   end
 
-  describe '#insert' do
+  describe '#insert_at' do
     context 'given a linked list' do
       it 'handles insertion at index 0' do
         a = Node.new('goodbye')
@@ -67,7 +67,7 @@ describe LinkedList do
         b.next = c
         l = LinkedList.new(a)
 
-        expect(l.insert(2, 'munch')).not_to eq(nil)
+        expect(l.insert_at(2, 'munch')).not_to eq(nil)
         expect(l.index_of('goodbye')).to eq(0)
         expect(l.index_of('cruel')).to eq(1)
         expect(l.index_of('munch')).to eq(2)
@@ -77,8 +77,8 @@ describe LinkedList do
         a = Node.new('goodbye')
         l = LinkedList.new(a)
 
-        expect(l.insert(99, 'what')).to eq(nil)
-        expect(l.insert(-9, 'what')).to eq(nil)
+        expect(l.insert_at(99, 'what')).to eq(nil)
+        expect(l.insert_at(-9, 'what')).to eq(nil)
       end
     end
   end

@@ -42,14 +42,14 @@ class LinkedList
     nil
   end
 
-  # insert attempts to insert a node with a value of
+  # insert_at attempts to insert a node with a value of
   # `value` in the Linked List at position `idx`
   #
   # @param idx [Integer] - the position to insert the node
   # @param value [Any] - the value to insert
   # @return [Node, nil] - returns the reference to
   # the inserted node, or nil if it cannot be inserted
-  def insert(idx, value)
+  def insert_at(idx, value)
     n = Node.new(value)
 
     if idx.zero?
