@@ -96,7 +96,7 @@ class SortAlgorithms
 
     pivot_idx = partition!(@array, left_idx, right_idx)
 
-    quicksort(left_idx, pivot_idx - 1)
-    quicksort(pivot_idx + 1, right_idx)
+    quick_sort(left_idx, pivot_idx - 1)
+    quick_sort(pivot_idx + 1, right_idx)
   end
 end
