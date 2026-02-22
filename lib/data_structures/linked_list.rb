@@ -16,6 +16,8 @@ class LinkedList
   # @return [Any, nil] - returns the value of the node
   # at position `idx`, or nil if it does not exist
   def read(idx)
+    return nil if idx.negative?
+
     current_node = head
     current_idx = 0
 
@@ -27,5 +29,28 @@ class LinkedList
     end
 
     current_node.value
+  end
+
+  # index_of attempts to find a node with a value of
+  # `value` in the Linked List
+  #
+  # @param value [Any] - the value to find
+  # @return [Integer, nil] - returns the index of the node
+  # with value of `value`, or nil if it does not exist
+  def index_of(value)
+    current_node = head
+    current_idx = 0
+
+    while current_node
+      return current_idx if current_node.value == value
+
+      current_node = current_node.next
+
+      return nil unless current_node
+
+      current_idx += 1
+    end
+
+    nil
   end
 end
