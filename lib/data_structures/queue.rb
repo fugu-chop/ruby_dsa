@@ -3,6 +3,7 @@
 # Queue represents the queue data structure
 class Queue
   def initialize
+    # TODO: Replace with Node type
     @queue = []
   end
 

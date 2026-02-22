@@ -11,7 +11,7 @@ class LinkedList
   # read attempts to read the node at position `idx` in
   # a Linked List
   #
-  # @param idx [Integer] - the index of the linked list
+  # @param idx [Integer] - the index of the node
   # to find
   # @return [Any, nil] - returns the value of the node
   # at position `idx`, or nil if it does not exist
