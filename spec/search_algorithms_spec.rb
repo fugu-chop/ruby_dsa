@@ -14,4 +14,18 @@ describe SearchAlgorithms do
       end
     end
   end
+
+  describe '#quick_select' do
+    context 'given an unsorted array' do
+      it 'returns the correctly sorted number of the provided index' do
+        arr = SearchAlgorithms.new([4, 3, 1, 5, 2, 6])
+        expect(arr.quickselect(2)).to eq(3)
+        expect(arr.quickselect(4)).to eq(5)
+      end
+      it 'exits gracefully when the provided index is beyond array bounds' do
+        arr = SearchAlgorithms.new([4, 3, 1, 5, 2, 6])
+        expect(arr.quickselect(99)).to eq(nil)
+      end
+    end
+  end
 end

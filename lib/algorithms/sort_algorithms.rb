@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
-# SortAlgorithms represents a series of sort methods on an unsorted array
+require './lib/algorithms/partitionable'
+
+# SortAlgorithms represents a series of methods to sort an
+# unsorted array in ascending order
 class SortAlgorithms
   attr_reader :array
+
+  include Partitionable
 
   def initialize(arr)
     @array = arr
   end
 
-  #
   # bubble_sort sorts a provided array in ascending order
   # in-place using the bubble sort algorithm.
   #
@@ -32,7 +36,6 @@ class SortAlgorithms
     end
   end
 
-  #
   # selection_sort sorts a provided array in ascending
   # order in-place using the selection sort algorithm.
   #
@@ -78,7 +81,7 @@ class SortAlgorithms
     end
   end
 
-  # quicksort sorts a provided array in ascending
+  # quick_sort sorts a provided array in ascending
   # order in-place using the quicksort algorithm
   # by recursively partitioning subarrays.
   #
@@ -87,50 +90,56 @@ class SortAlgorithms
   # @param right_idx [Integer] - the right boundary of the array
   # to partition
   # @return [nil] - the array is sorted in place
-  def quicksort(left_idx = 0, right_idx = @array.length - 1)
+  def quick_sort(left_idx = 0, right_idx = @array.length - 1)
     # Subarray is only one element
     return if right_idx - left_idx <= 0
 
-    pivot_idx = partition!(left_idx, right_idx)
+    pivot_idx = partition!(@array, left_idx, right_idx)
 
-    quicksort(left_idx, pivot_idx - 1)
-    quicksort(pivot_idx + 1, right_idx)
+    quick_sort(left_idx, pivot_idx - 1)
+    quick_sort(pivot_idx + 1, right_idx)
+  end
+
+  # merge_sort sorts a provided array in ascending
+  # order using the merge sort algorithm that
+  # recursively splits the array into single
+  # element subarrays and reassembles them in
+  # ascending order.
+  #
+  # @return [Array] - the original array is not sorted in place
+  def merge_sort(array = @array)
+    return array if array.length <= 1
+
+    mid = array.length / 2
+    left_half = merge_sort(array[0...mid])
+    right_half = merge_sort(array[mid..])
+
+    merge(left_half, right_half)
   end
 
   private
 
-  # partition ensures that the element of an array
-  # at a 'pivot' index (always set to the last
-  # element of the array) is correctly placed within
-  # the context of an array (ascending order).
-  #
-  # @param left_ptr [Integer] - the left index where
-  # the partition process begins
-  # @param right_ptr [Integer] - the right index where
-  # the partition process begins
-  # @return [Integer] - the new pivot index
-  def partition!(left_ptr, right_ptr)
-    # Pin pivot to last item in array
-    pivot_idx = right_ptr
-    pivot = @array[pivot_idx]
+  def merge(left, right)
+    result = []
+    i = 0
+    j = 0
 
-    # Right pointer starts left of pivot
-    right_ptr -= 1
-
-    while true
-      left_ptr += 1 while @array[left_ptr] < pivot
-
-      right_ptr -= 1 while @array[right_ptr] > pivot
-
-      break if left_ptr >= right_ptr
-
-      @array[left_ptr], @array[right_ptr] = @array[right_ptr], @array[left_ptr]
-      left_ptr += 1
+    while i < left.length && j < right.length
+      if left[i] <= right[j]
+        result << left[i]
+        i += 1
+      else
+        result << right[j]
+        j += 1
+      end
     end
 
-    @array[left_ptr], @array[pivot_idx] = @array[pivot_idx], @array[left_ptr]
+    # Append remaining elements as the recursive
+    # merge process ensures both arrays are in
+    # ascending order
+    result.concat(left[i..]) if i < left.length
+    result.concat(right[j..]) if j < right.length
 
-    # return what is the new pivot index
-    left_ptr
+    result
   end
 end
