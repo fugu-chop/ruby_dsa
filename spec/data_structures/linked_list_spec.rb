@@ -53,7 +53,7 @@ describe LinkedList do
         b.next = c
         l = LinkedList.new(a)
 
-        expect(l.insert(0, 'munch')).not_to eq(nil)
+        expect(l.insert_at(0, 'munch')).not_to eq(nil)
         expect(l.head).not_to eq(nil)
         expect(l.head.value).to eq('munch')
         expect(l.head.next).not_to eq(nil)
@@ -79,6 +79,45 @@ describe LinkedList do
 
         expect(l.insert_at(99, 'what')).to eq(nil)
         expect(l.insert_at(-9, 'what')).to eq(nil)
+      end
+    end
+  end
+
+  describe '#delete_at' do
+    context 'given a linked list' do
+      it 'handles deletion at index 0' do
+        a = Node.new('goodbye')
+        b = Node.new('cruel')
+        c = Node.new('world')
+        a.next = b
+        b.next = c
+        l = LinkedList.new(a)
+
+        expect(l.delete_at(0)).not_to eq(nil)
+        expect(l.head).not_to eq(nil)
+        expect(l.head.value).to eq('cruel')
+        expect(l.head.next).not_to eq(nil)
+        expect(l.head.next.value).to eq('world')
+        expect(l.head.next.next).to eq(nil)
+      end
+      it 'handles deletion at an index that exists' do
+        a = Node.new('goodbye')
+        b = Node.new('cruel')
+        c = Node.new('world')
+        a.next = b
+        b.next = c
+        l = LinkedList.new(a)
+
+        expect(l.delete_at(1)).not_to eq(nil)
+        expect(l.index_of('goodbye')).to eq(0)
+        expect(l.index_of('world')).to eq(1)
+      end
+      it 'handles deletion at an index that does not exist' do
+        a = Node.new('goodbye')
+        l = LinkedList.new(a)
+
+        expect(l.delete_at(99)).to eq(nil)
+        expect(l.delete_at(-9)).to eq(nil)
       end
     end
   end
