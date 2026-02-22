@@ -69,6 +69,32 @@ class LinkedList
     n
   end
 
+  # delete_at attempts to delete a node in the
+  # Linked List at position `idx`.
+  #
+  # @param idx [Integer] - the position to insert the node
+  # @return [Node, nil] - Returns a reference to the node
+  # deleted, or nil if deletion failed
+  def delete_at(idx)
+    if idx.zero?
+      original = head
+      next_node = head.next
+      @head = next_node
+      return original
+    end
+
+    prior_node = get(idx - 1)
+    return nil unless prior_node
+
+    replacement_node = prior_node.next&.next
+    deleted_node = prior_node.next
+    return nil unless replacement_node && deleted_node
+
+    prior_node.next = replacement_node
+
+    deleted_node
+  end
+
   private
 
   def get(idx)
