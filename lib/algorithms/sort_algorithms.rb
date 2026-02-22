@@ -48,7 +48,8 @@ class SortAlgorithms
       (start_idx...array.length).each do |idx|
         lowest_idx = idx if array[idx] < array[lowest_idx]
       end
-      # no conditional check for swap because the check itself is an operation
+      # no conditional check for swap because
+      # the check itself is an operation
       array[lowest_idx], array[start_idx] = array[start_idx], array[lowest_idx]
       start_idx += 1
     end
@@ -85,10 +86,10 @@ class SortAlgorithms
   # order in-place using the quicksort algorithm
   # by recursively partitioning subarrays.
   #
-  # @param left_idx [Integer] - the left boundary of the array
-  # to partition
-  # @param right_idx [Integer] - the right boundary of the array
-  # to partition
+  # @param left_idx [Integer] - the left boundary of
+  # the array to partition
+  # @param right_idx [Integer] - the right boundary
+  # of the array to partition
   # @return [nil] - the array is sorted in place
   def quick_sort(left_idx = 0, right_idx = @array.length - 1)
     # Subarray is only one element
@@ -106,7 +107,8 @@ class SortAlgorithms
   # element subarrays and reassembles them in
   # ascending order.
   #
-  # @return [Array] - the original array is not sorted in place
+  # @return [Array] - the original array is not
+  # sorted in place
   def merge_sort(array = @array)
     return array if array.length <= 1
 

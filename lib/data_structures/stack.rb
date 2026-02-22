@@ -3,6 +3,7 @@
 # Stack represents the stack data structure
 class Stack
   def initialize
+    # TODO: Replace with Node type
     @stack = []
   end
 
