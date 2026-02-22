@@ -42,6 +42,33 @@ class LinkedList
     nil
   end
 
+  # insert attempts to insert a node with a value of
+  # `value` in the Linked List at position `idx`
+  #
+  # @param idx [Integer] - the position to insert the node
+  # @param value [Any] - the value to insert
+  # @return [Node, nil] - returns the reference to
+  # the inserted node, or nil if it cannot be inserted
+  def insert(idx, value)
+    n = Node.new(value)
+
+    if idx.zero?
+      n.next = head
+      @head = n
+      return @head
+    end
+
+    prior_node = get(idx - 1)
+
+    return nil unless prior_node
+
+    next_node = prior_node.next
+
+    prior_node.next = n
+    n.next = next_node
+    n
+  end
+
   private
 
   def get(idx)
