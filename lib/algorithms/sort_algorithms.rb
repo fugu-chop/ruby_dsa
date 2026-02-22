@@ -99,4 +99,47 @@ class SortAlgorithms
     quick_sort(left_idx, pivot_idx - 1)
     quick_sort(pivot_idx + 1, right_idx)
   end
+
+  # merge_sort sorts a provided array in ascending
+  # order using the merge sort algorithm that
+  # recursively splits the array into single
+  # element subarrays and reassembles them in
+  # ascending order.
+  #
+  # @return [Array] - the original array is not sorted in place
+  def merge_sort(array = @array)
+    return array if array.length <= 1
+
+    mid = array.length / 2
+    left_half = merge_sort(array[0...mid])
+    right_half = merge_sort(array[mid..])
+
+    merge(left_half, right_half)
+  end
+
+  private
+
+  def merge(left, right)
+    result = []
+    i = 0
+    j = 0
+
+    while i < left.length && j < right.length
+      if left[i] <= right[j]
+        result << left[i]
+        i += 1
+      else
+        result << right[j]
+        j += 1
+      end
+    end
+
+    # Append remaining elements as the recursive
+    # merge process ensures both arrays are in
+    # ascending order
+    result.concat(left[i..]) if i < left.length
+    result.concat(right[j..]) if j < right.length
+
+    result
+  end
 end
