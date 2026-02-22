@@ -4,8 +4,8 @@
 class LinkedList
   attr_reader :head
 
-  def initialize(node)
-    @head = node
+  def initialize(value)
+    @head = Node.new(value)
   end
 
   # read attempts to read the node at position `idx` in
