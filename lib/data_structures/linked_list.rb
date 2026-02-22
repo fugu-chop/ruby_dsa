@@ -16,19 +16,7 @@ class LinkedList
   # @return [Any, nil] - returns the value of the node
   # at position `idx`, or nil if it does not exist
   def read(idx)
-    return nil if idx.negative?
-
-    current_node = head
-    current_idx = 0
-
-    while current_idx < idx
-      current_node = current_node.next
-      return nil unless current_node
-
-      current_idx += 1
-    end
-
-    current_node.value
+    get(idx)&.value
   end
 
   # index_of attempts to find a node with a value of
@@ -52,5 +40,23 @@ class LinkedList
     end
 
     nil
+  end
+
+  private
+
+  def get(idx)
+    return nil if idx.negative?
+
+    current_node = head
+    current_idx = 0
+
+    while current_idx < idx
+      current_node = current_node.next
+      return nil unless current_node
+
+      current_idx += 1
+    end
+
+    current_node
   end
 end
