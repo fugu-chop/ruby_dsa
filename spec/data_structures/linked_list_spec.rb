@@ -5,12 +5,10 @@ require './lib/data_structures/node'
 
 describe LinkedList do
   def create_linked_list
-    a = Node.new('goodbye')
-    b = Node.new('cruel')
-    c = Node.new('world')
-    a.next = b
-    b.next = c
-    LinkedList.new(a)
+    l = LinkedList.new('goodbye')
+    l.insert_at(1, 'cruel')
+    l.insert_at(2, 'world')
+    l
   end
 
   describe '#read' do
