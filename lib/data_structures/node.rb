@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 # Node represents the node data structure
-# used in Linked Lists, Queues, Stacks
-# and Trees.
+# used in Linked Lists, Queues and Stacks
 class Node
   attr_reader :value
   attr_accessor :next
@@ -13,7 +12,8 @@ class Node
 end
 
 # Node represents the double linked node
-# data structure used in Doubly Linked Lists.
+# data structure used in Doubly Linked Lists
+# or Binary Search Trees
 class DoubleLinkedNode
   attr_reader :value
   attr_accessor :next, :prev
