@@ -4,8 +4,8 @@ require './lib/data_structures/stack'
 
 describe Stack do
   describe '#push' do
-    context 'given a stack' do
-      it 'it adds an item to the stack in LIFO order' do
+    context 'when pushing a node' do
+      it 'it adds an item in LIFO order' do
         s = Stack.new(1)
         expect(s.push(3).value).to eq(3)
         expect(s.push(2).value).to eq(2)
@@ -14,8 +14,8 @@ describe Stack do
   end
 
   describe '#pop' do
-    context 'given a stack' do
-      it 'removes an item from the stack in LIFO order' do
+    context 'when popping from the stack' do
+      it 'removes an item in LIFO order' do
         s = Stack.new(1)
         s.push(3)
         s.push(2)
@@ -33,8 +33,8 @@ describe Stack do
   end
 
   describe '#read' do
-    context 'given a stack' do
-      it 'reads from the top of the stack' do
+    context 'when reading from the stack' do
+      it 'reads from the top' do
         s = Stack.new(1)
         s.push(2)
 
@@ -44,7 +44,7 @@ describe Stack do
 
         expect(s.read).to eq(3)
       end
-      it 'handles empty stack' do
+      it 'handles an empty stack' do
         s = Stack.new(1)
         s.pop
 

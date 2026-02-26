@@ -4,7 +4,7 @@ require './lib/data_structures/queue'
 
 describe Queue do
   describe '#enqueue' do
-    context 'given a queue' do
+    context 'when enqueing node to the queue' do
       it 'returns the items pushed' do
         q = Queue.new(1)
         expect(q.enqueue(2)).not_to eq(nil)
@@ -16,7 +16,7 @@ describe Queue do
   end
 
   describe '#dequeue' do
-    context 'given a queue' do
+    context 'when dequeing node from a queue' do
       it 'dequeues items onto in FIFO order' do
         q = Queue.new(1)
         expect(q.enqueue(2).value).to eq(2)
@@ -33,7 +33,7 @@ describe Queue do
   end
 
   describe '#read' do
-    context 'given a queue' do
+    context 'when reading from a queue' do
       it 'reads items FIFO order' do
         q = Queue.new(1)
         expect(q.enqueue(2)).not_to eq(nil)
