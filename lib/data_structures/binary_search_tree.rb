@@ -27,4 +27,18 @@ class BinarySearchTree
       new_node
     end
   end
+
+  # search recursively searches for the value within the binary
+  # search tree
+  #
+  # @param value [Any] - the value associated with the node
+  # @return [Node, nil] - returns the Node with the correct value
+  # or nil if the value does not exist
+  def search(value, current_node = @root)
+    return current_node if !current_node || value == current_node.value
+
+    return search(value, current_node.prev) if value < current_node.value
+
+    search(value, current_node.next)
+  end
 end
