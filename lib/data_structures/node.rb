@@ -15,8 +15,7 @@ end
 # data structure used in Doubly Linked Lists
 # or Binary Search Trees
 class DoubleLinkedNode
-  attr_reader :value
-  attr_accessor :next, :prev
+  attr_accessor :next, :prev, :value
 
   def initialize(value)
     @value = value

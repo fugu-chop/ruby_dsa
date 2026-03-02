@@ -66,7 +66,7 @@ class BinarySearchTree
   #     cessor node.
   #
   # @param value [Any] - the value associated with the node
-  # @return [Node, nil] - returns the Node with the correct value
+  # @return [Node, nil] - returns the root Node
   # or nil if the value does not exist
   def delete(value, node = @root)
     return nil unless node
