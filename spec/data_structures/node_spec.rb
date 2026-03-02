@@ -30,3 +30,23 @@ describe Node do
     end
   end
 end
+describe PriorityNode do
+  lower = PriorityNode.new('some-value', 1)
+  higher = PriorityNode.new('some-other-value', 2)
+
+  describe '#<' do
+    context 'given two PriorityNode instances' do
+      it 'gets the lower priority value' do
+        expect(lower < higher).to eq(true)
+      end
+    end
+  end
+
+  describe '#>' do
+    context 'given two PriorityNode instances' do
+      it 'gets the higher priority value' do
+        expect(higher > lower).to eq(true)
+      end
+    end
+  end
+end
