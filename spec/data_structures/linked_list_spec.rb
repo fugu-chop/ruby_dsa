@@ -12,7 +12,7 @@ describe LinkedList do
   end
 
   describe '#read' do
-    context 'given a linked list' do
+    context 'when reading' do
       it 'returns the node at idx position when it exists' do
         l = create_linked_list
         expect(l.read(2)).to eq('world')
@@ -29,7 +29,7 @@ describe LinkedList do
   end
 
   describe '#index_of' do
-    context 'given a linked list' do
+    context 'when searching for the index of a node' do
       it 'returns the index of the node with a matching value' do
         l = create_linked_list
         expect(l.index_of('world')).to eq(2)
@@ -42,7 +42,7 @@ describe LinkedList do
   end
 
   describe '#insert_at' do
-    context 'given a linked list' do
+    context 'when inserting a node' do
       it 'handles insertion at index 0' do
         l = create_linked_list
 
@@ -71,7 +71,7 @@ describe LinkedList do
   end
 
   describe '#delete_at' do
-    context 'given a linked list' do
+    context 'when deleting a node' do
       it 'handles deletion at index 0' do
         l = create_linked_list
 
