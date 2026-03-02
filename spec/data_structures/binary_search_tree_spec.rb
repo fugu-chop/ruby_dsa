@@ -4,6 +4,10 @@ require './lib/data_structures/binary_search_tree'
 require './lib/data_structures/node'
 
 describe BinarySearchTree do
+  # This creates a binary search tree like:
+  #          50
+  #      25      75
+  #    10  33  56  89
   def create_bst
     b = BinarySearchTree.new(50)
     b.insert(50)
@@ -53,6 +57,78 @@ describe BinarySearchTree do
         bst = create_bst
 
         expect(bst.search(99)).to eq(nil)
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'deleting a node' do
+      it 'returns the root node if the value does not exist' do
+        bst = create_bst
+
+        expect(bst.search(999)).to eq(nil)
+
+        result = bst.delete(999)
+
+        expect(result).not_to eq(nil)
+        expect(result.value).to eq(50)
+      end
+      it 'deletes the node when there are no children' do
+        bst = create_bst
+
+        expect(bst.search(10)).not_to eq(nil)
+
+        result = bst.delete(10)
+
+        expect(result).not_to eq(nil)
+        expect(bst.search(10)).to eq(nil)
+      end
+      it 'deletes the node when there is a single child' do
+        bst = BinarySearchTree.new(50)
+        bst.insert(50)
+        bst.insert(25)
+        bst.insert(75)
+        bst.insert(10)
+        # This creates a binary search tree like:
+        #          50
+        #      25      75
+        #    10
+
+        expect(bst.search(25)).not_to eq(nil)
+
+        result = bst.delete(25)
+
+        expect(result).not_to eq(nil)
+        expect(bst.search(25)).to eq(nil)
+      end
+      it 'deletes the node when there are two children' do
+        bst = create_bst
+
+        expect(bst.search(25)).not_to eq(nil)
+
+        result = bst.delete(25)
+
+        expect(result).not_to eq(nil)
+        expect(bst.search(25)).to eq(nil)
+      end
+      it 'deletes the node when there are two children and there is a right child' do
+        bst = BinarySearchTree.new(50)
+        bst.insert(50)
+        bst.insert(25)
+        bst.insert(75)
+        bst.insert(30)
+        bst.insert(27)
+
+        # This creates a binary search tree like:
+        #          50
+        #      25      75
+        #         30
+        #      27
+
+        result = bst.delete(25)
+
+        expect(result).not_to eq(nil)
+        expect(bst.search(25)).to eq(nil)
       end
     end
   end
