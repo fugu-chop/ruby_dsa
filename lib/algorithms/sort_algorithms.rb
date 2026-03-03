@@ -13,11 +13,11 @@ class SortAlgorithms
     @array = arr
   end
 
-  # bubble_sort sorts a provided array in ascending order
+  # bubble_sort! sorts a provided array in ascending order
   # in-place using the bubble sort algorithm.
   #
   # @return [nil] - the array is sorted in place
-  def bubble_sort
+  def bubble_sort!
     end_ptr = array.length - 1
     is_sorted = false
 
@@ -36,11 +36,11 @@ class SortAlgorithms
     end
   end
 
-  # selection_sort sorts a provided array in ascending
+  # selection_sort! sorts a provided array in ascending
   # order in-place using the selection sort algorithm.
   #
   # @return [nil] - the array is sorted in place
-  def selection_sort
+  def selection_sort!
     start_idx = 0
 
     while start_idx < array.length - 1
@@ -55,11 +55,11 @@ class SortAlgorithms
     end
   end
 
-  # insertion_sort sorts a provided array in ascending
+  # insertion_sort! sorts a provided array in ascending
   # order in-place using the insertion sort algorithm.
   #
   # @return [nil] - the array is sorted in place
-  def insertion_sort
+  def insertion_sort!
     (1...array.length).each do |idx|
       temp_value = array[idx]
       position = idx - 1
@@ -82,7 +82,7 @@ class SortAlgorithms
     end
   end
 
-  # quick_sort sorts a provided array in ascending
+  # quick_sort! sorts a provided array in ascending
   # order in-place using the quicksort algorithm
   # by recursively partitioning subarrays.
   #
@@ -91,17 +91,17 @@ class SortAlgorithms
   # @param right_idx [Integer] - the right boundary
   # of the array to partition
   # @return [nil] - the array is sorted in place
-  def quick_sort(left_idx = 0, right_idx = @array.length - 1)
+  def quick_sort!(left_idx = 0, right_idx = @array.length - 1)
     # Subarray is only one element
     return if right_idx - left_idx <= 0
 
-    pivot_idx = partition!(@array, left_idx, right_idx)
+    pivot_idx = random_partition!(@array, left_idx, right_idx)
 
-    quick_sort(left_idx, pivot_idx - 1)
-    quick_sort(pivot_idx + 1, right_idx)
+    quick_sort!(left_idx, pivot_idx - 1)
+    quick_sort!(pivot_idx + 1, right_idx)
   end
 
-  # merge_sort sorts a provided array in ascending
+  # merge_sort! sorts a provided array in ascending
   # order using the merge sort algorithm that
   # recursively splits the array into single
   # element subarrays and reassembles them in
@@ -109,12 +109,12 @@ class SortAlgorithms
   #
   # @return [Array] - the original array is not
   # sorted in place
-  def merge_sort(array = @array)
+  def merge_sort!(array = @array)
     return array if array.length <= 1
 
     mid = array.length / 2
-    left_half = merge_sort(array[0...mid])
-    right_half = merge_sort(array[mid..])
+    left_half = merge_sort!(array[0...mid])
+    right_half = merge_sort!(array[mid..])
 
     merge(left_half, right_half)
   end
