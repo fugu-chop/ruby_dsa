@@ -9,6 +9,8 @@ class BinaryHeap
 
   # insert adds the value to the heap in a
   # way that preserves the min-heap condition
+  #
+  # @return [Any] - returns the value added
   def insert(value)
     @heap.push(value)
 
@@ -20,11 +22,15 @@ class BinaryHeap
 
       trickle_idx = parent_idx(trickle_idx)
     end
+
+    value
   end
 
   # delete removes the root value in the heap and
   # reorders the heap to preserve the min-heap
   # condition
+  #
+  # @return [Any] - returns the value deleted
   def delete
   end
 
