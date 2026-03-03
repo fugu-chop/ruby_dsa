@@ -32,6 +32,20 @@ class BinaryHeap
   #
   # @return [Any] - returns the value deleted
   def delete
+    popped_value = @heap[0]
+    @heap[0] = @heap.pop
+
+    current_idx = 0
+
+    while lesser_child?(current_idx)
+      child_idx = lesser_child_idx(current_idx)
+      @heap[child_idx], @heap[current_idx] =
+        @heap[current_idx], @heap[child_idx]
+
+      current_idx = child_idx
+    end
+
+    popped_value
   end
 
   # read returns the root node of the heap; i.e.
@@ -52,5 +66,28 @@ class BinaryHeap
 
   def parent_idx(idx)
     (idx - 1) / 2
+  end
+
+  def lesser_child?(idx)
+    (!left_child(idx).nil? && left_child(idx) < @heap[idx]) ||
+      (!right_child(idx).nil? && right_child(idx) < @heap[idx])
+  end
+
+  def left_child(idx)
+    @heap[(2 * idx - 1)]
+  end
+
+  def right_child(idx)
+    @heap[(2 * idx + 1)]
+  end
+
+  def lesser_child_idx(idx)
+    left = (2 * idx - 1)
+    right = (2 * idx + 1)
+
+    return right if !right_child(idx).nil? &&
+                    right_child(idx) < left_child(idx)
+
+    left
   end
 end
