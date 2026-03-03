@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+require './lib/data_structures/binary_heap'
+
+describe BinaryHeap do
+  describe '#insert' do
+    context 'in a min-heap' do
+      it 'trickles the smallest node up' do
+        heap = BinaryHeap.new
+
+        expect(heap.insert(100)).to eq(100)
+        expect(heap.read).to eq(100)
+
+        expect(heap.insert(25)).to eq(25)
+        expect(heap.read).to eq(25)
+
+        expect(heap.insert(88)).to eq(88)
+        expect(heap.read).to eq(25)
+
+        expect(heap.insert(3)).to eq(3)
+        expect(heap.read).to eq(3)
+      end
+    end
+  end
+
+  describe '#delete' do
+    context 'in a min-heap' do
+      it 'removes the root node' do
+        heap = BinaryHeap.new
+        expect(heap.insert(100)).to eq(100)
+        expect(heap.insert(25)).to eq(25)
+        expect(heap.insert(88)).to eq(88)
+        expect(heap.insert(3)).to eq(3)
+
+        expect(heap.delete).to eq(3)
+        expect(heap.read).to eq(25)
+
+        expect(heap.delete).to eq(25)
+        expect(heap.read).to eq(88)
+      end
+    end
+  end
+end
