@@ -49,4 +49,12 @@ describe PriorityNode do
       end
     end
   end
+
+  describe '#==' do
+    context 'given a PriorityNode' do
+      it 'equates its priority to an integer' do
+        expect(higher == 2).to eq(true)
+      end
+    end
+  end
 end

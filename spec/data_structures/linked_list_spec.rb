@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require './lib/data_structures/linked_list'
-require './lib/data_structures/node'
 
 describe LinkedList do
   def create_linked_list

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require './lib/data_structures/binary_search_tree'
-require './lib/data_structures/node'
 
 describe BinarySearchTree do
   # This creates a binary search tree like:
