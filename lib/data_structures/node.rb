@@ -32,6 +32,14 @@ class PriorityNode
     @priority = priority
   end
 
+  def ==(other)
+    priority == other.to_i
+  end
+
+  def to_i
+    priority
+  end
+
   def <(other)
     priority < other.priority
   end
