@@ -44,3 +44,25 @@ class PriorityNode
     priority > other.priority
   end
 end
+
+# TrieNode represents a node
+# data structure used in a Trie
+class TrieNode
+  def initialize
+    @children = {}
+  end
+
+  def children
+    @children.dup
+  end
+
+  def get(letter)
+    @children[letter]
+  end
+
+  def set(letter)
+    return if @children[letter]
+
+    @children[letter] = TrieNode.new
+  end
+end
