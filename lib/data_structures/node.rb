@@ -52,11 +52,17 @@ class TrieNode
     @children = {}
   end
 
+  def children
+    @children.dup
+  end
+
   def get(letter)
     @children[letter]
   end
 
   def set(letter)
+    return if @children[letter]
+
     @children[letter] = TrieNode.new
   end
 end
