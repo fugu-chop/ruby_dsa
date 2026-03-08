@@ -37,4 +37,30 @@ describe Trie do
       end
     end
   end
+
+  describe '#autocomplete' do
+    context 'given a trie' do
+      it 'returns an array of words if the prefix exists' do
+        t = Trie.new
+        expect(t.insert('cat')).to eq(nil)
+        expect(t.insert('can')).to eq(nil)
+        expect(t.insert('cake')).to eq(nil)
+        expect(t.insert('cape')).to eq(nil)
+        expect(t.insert('case')).to eq(nil)
+
+        result = t.autocomplete('ca')
+        expect(result).not_to eq(nil)
+        expect(result.size).to eq(5)
+        expect(result).to eq(%w[t n ke pe se])
+      end
+      it 'returns nil if the prefix does not exist' do
+        t = Trie.new
+        expect(t.insert('value')).to eq(nil)
+        expect(t.insert('valiant')).to eq(nil)
+        expect(t.insert('valgus')).to eq(nil)
+
+        expect(t.autocomplete('cat')).to eq(nil)
+      end
+    end
+  end
 end

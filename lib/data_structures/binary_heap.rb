@@ -10,6 +10,7 @@ class BinaryHeap
   # insert adds the value to the heap in a
   # way that preserves the min-heap condition
   #
+  # @param value [Integer] - the value to insert
   # @return [Any] - returns the value added
   def insert(value)
     @heap.push(value)

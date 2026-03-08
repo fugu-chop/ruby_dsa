@@ -12,6 +12,7 @@ class Trie
   # search attempts to find a word within the Trie
   # structure.
   #
+  # @param word [String] - the word to search for
   # @return [TrieNode, nil] - Return the `*` TrieNode
   # associated with the word, or nil if the word is not
   # found
@@ -35,6 +36,7 @@ class Trie
   # If a letter is already represented as a TrieNode,
   # it is not mutated.
   #
+  # @param word [String] - the word to insert
   # @return [nil]
   def insert(word)
     current_node = root
@@ -52,5 +54,37 @@ class Trie
 
     current_node.set('*')
     nil
+  end
+
+  # autocomplete attempts to find all words that
+  # match the prefix.
+  #
+  # @param prefix [String] - the prefix of the word to
+  # search for
+  # @return [Array, nil] - returns an array of suffixes
+  # that match the prefix, or nil if the prefix does
+  # not exist within the Trie.
+  def autocomplete(prefix)
+    current_node = search(prefix)
+
+    return nil unless current_node
+
+    all_words(current_node)
+  end
+
+  private
+
+  def all_words(node = nil, word = '', words = [])
+    node ||= root
+
+    node.children.each do |key, childnode|
+      if key == '*'
+        words.push(word)
+      else
+        all_words(childnode, word + key, words)
+      end
+    end
+
+    words
   end
 end
