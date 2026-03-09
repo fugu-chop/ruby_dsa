@@ -63,4 +63,30 @@ describe Trie do
       end
     end
   end
+
+  describe '#autocorrect' do
+    context 'given a trie' do
+      it 'returns an array of words if the prefix exists' do
+        t = Trie.new
+        expect(t.insert('cat')).to eq(nil)
+        expect(t.insert('catnap')).to eq(nil)
+        expect(t.insert('catnip')).to eq(nil)
+
+        result = t.autocorrect('catnor')
+        expect(result).not_to eq(nil)
+        expect(result).to eq('catnap')
+      end
+
+      it 'returns first choice by insertion order if the word does not match at all' do
+        t = Trie.new
+        expect(t.insert('valiant')).to eq(nil)
+        expect(t.insert('value')).to eq(nil)
+        expect(t.insert('valgus')).to eq(nil)
+
+        result = t.autocorrect('cat')
+
+        expect(result).to eq('valiant')
+      end
+    end
+  end
 end

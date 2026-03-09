@@ -69,19 +69,34 @@ class Trie
 
     return nil unless current_node
 
-    all_words(prefix, current_node)
+    all_words(current_node).map { |word| prefix + word }
+  end
+
+  def autocorrect(word)
+    current_node = root
+    prefix = ''
+
+    word.each_char do |letter|
+      result = current_node.get(letter)
+      return all_words(current_node).map { |word| prefix + word }.first unless result
+
+      prefix += letter
+      current_node = result
+    end
+
+    word
   end
 
   private
 
-  def all_words(prefix, node = nil, word = '', words = [])
+  def all_words(node = nil, word = '', words = [])
     node ||= root
 
     node.children.each do |key, childnode|
       if key == '*'
-        words.push(prefix + word)
+        words.push(word)
       else
-        all_words(prefix, childnode, word + key, words)
+        all_words(childnode, word + key, words)
       end
     end
 
