@@ -61,7 +61,7 @@ class Trie
   #
   # @param prefix [String] - the prefix of the word to
   # search for
-  # @return [Array, nil] - returns an array of suffixes
+  # @return [Array, nil] - returns an array of words
   # that match the prefix, or nil if the prefix does
   # not exist within the Trie.
   def autocomplete(prefix)
@@ -69,7 +69,29 @@ class Trie
 
     return nil unless current_node
 
-    all_words(current_node)
+    all_words(current_node).map { |word| prefix + word }
+  end
+
+  # autocorrect attempts to find the most similar word
+  # if the provided word does not exist in the trie
+  #
+  # @param word [String] - the word to
+  # search for
+  # @return [Array] - returns an array of words
+  # that are most similar to the provided word.
+  def autocorrect(word)
+    current_node = root
+    prefix = ''
+
+    word.each_char do |letter|
+      result = current_node.get(letter)
+      return all_words(current_node).map { |word| prefix + word } unless result
+
+      prefix += letter
+      current_node = result
+    end
+
+    word
   end
 
   private

@@ -51,7 +51,7 @@ describe Trie do
         result = t.autocomplete('ca')
         expect(result).not_to eq(nil)
         expect(result.size).to eq(5)
-        expect(result).to eq(%w[t n ke pe se])
+        expect(result).to eq(%w[cat can cake cape case])
       end
       it 'returns nil if the prefix does not exist' do
         t = Trie.new
@@ -60,6 +60,45 @@ describe Trie do
         expect(t.insert('valgus')).to eq(nil)
 
         expect(t.autocomplete('cat')).to eq(nil)
+      end
+    end
+  end
+
+  describe '#autocorrect' do
+    context 'given a trie' do
+      it 'returns an array of words if the word is similar' do
+        t = Trie.new
+        expect(t.insert('cat')).to eq(nil)
+        expect(t.insert('catnap')).to eq(nil)
+        expect(t.insert('catnip')).to eq(nil)
+
+        result = t.autocorrect('catnor')
+        expect(result).not_to eq(nil)
+        expect(result.size).to eq(2)
+        expect(result).to eq(%w[catnap catnip])
+      end
+
+      it 'returns word if the word exists' do
+        t = Trie.new
+        expect(t.insert('cat')).to eq(nil)
+        expect(t.insert('catnap')).to eq(nil)
+        expect(t.insert('catnip')).to eq(nil)
+
+        result = t.autocorrect('catnap')
+        expect(result).not_to eq(nil)
+        expect(result).to eq('catnap')
+      end
+
+      it 'returns first choice by insertion order if the word does not match at all' do
+        t = Trie.new
+        expect(t.insert('valiant')).to eq(nil)
+        expect(t.insert('value')).to eq(nil)
+        expect(t.insert('valgus')).to eq(nil)
+
+        result = t.autocorrect('cat')
+
+        expect(result.size).to eq(3)
+        expect(result).to eq(%w[valiant value valgus])
       end
     end
   end
