@@ -78,7 +78,7 @@ describe Trie do
         expect(result).to eq(%w[catnap catnip])
       end
 
-      it 'returns an array of one if the word exists' do
+      it 'returns word if the word exists' do
         t = Trie.new
         expect(t.insert('cat')).to eq(nil)
         expect(t.insert('catnap')).to eq(nil)
