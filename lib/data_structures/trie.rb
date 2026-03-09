@@ -61,7 +61,7 @@ class Trie
   #
   # @param prefix [String] - the prefix of the word to
   # search for
-  # @return [Array, nil] - returns an array of suffixes
+  # @return [Array, nil] - returns an array of words
   # that match the prefix, or nil if the prefix does
   # not exist within the Trie.
   def autocomplete(prefix)
@@ -69,19 +69,19 @@ class Trie
 
     return nil unless current_node
 
-    all_words(current_node)
+    all_words(prefix, current_node)
   end
 
   private
 
-  def all_words(node = nil, word = '', words = [])
+  def all_words(prefix, node = nil, word = '', words = [])
     node ||= root
 
     node.children.each do |key, childnode|
       if key == '*'
-        words.push(word)
+        words.push(prefix + word)
       else
-        all_words(childnode, word + key, words)
+        all_words(prefix, childnode, word + key, words)
       end
     end
 

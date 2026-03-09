@@ -51,7 +51,7 @@ describe Trie do
         result = t.autocomplete('ca')
         expect(result).not_to eq(nil)
         expect(result.size).to eq(5)
-        expect(result).to eq(%w[t n ke pe se])
+        expect(result).to eq(%w[cat can cake cape case])
       end
       it 'returns nil if the prefix does not exist' do
         t = Trie.new
