@@ -36,3 +36,30 @@ class Vertex
     vertex
   end
 end
+
+# dfs performs depth-first search on a vertex
+#
+# @param search_value [Any] - the value being
+# searched for
+# @param search_vertex [Vertex] - the starting
+# vertex where dfs should begin searching
+# @param searched_vertices [Hash] - an optional
+# parameter that keeps track of which vertices
+# have been visited
+
+# @return [Vertex, nil] - the vertex that contains
+# the search_value, or nil if a Vertex with search_value
+# cannot be found
+def dfs(search_value, search_vertex, searched_vertices = {})
+  return search_vertex if search_vertex.value == search_value
+
+  searched_vertices[search_vertex.value] = true
+
+  search_vertex.adjacent_vertices.each_value do |vertex|
+    next if searched_vertices[vertex.value]
+
+    return dfs(search_value, vertex, searched_vertices)
+  end
+
+  nil
+end
