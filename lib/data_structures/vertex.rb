@@ -63,3 +63,39 @@ def dfs(search_value, search_vertex, searched_vertices = {})
 
   nil
 end
+
+# bfs performs breadth-first search on a vertex
+#
+# @param search_value [Any] - the value being
+# searched for
+# @param search_vertex [Vertex] - the starting
+# vertex where dfs should begin searching
+
+# @return [Vertex, nil] - the vertex that contains
+# the search_value, or nil if a Vertex with search_value
+# cannot be found
+def bfs(search_value, search_vertex)
+  searched_vertices = {}
+  searched_vertices[search_vertex.value] = true
+
+  queue = Queue.new
+  queue.enqueue(search_vertex)
+
+  loop do
+    current_vertex = queue.dequeue.value
+    return current_vertex if current_vertex.value == search_value
+
+    current_vertex.adjacent_vertices.each_value do |vertex|
+      return vertex if vertex.value == search_value
+
+      unless searched_vertices[vertex.value]
+        searched_vertices[vertex.value] = true
+        queue.enqueue(vertex)
+      end
+    end
+
+    break unless queue.read
+  end
+
+  nil
+end
