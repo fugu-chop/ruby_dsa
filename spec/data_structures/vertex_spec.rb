@@ -35,19 +35,18 @@ describe Vertex do
 
   describe '#dfs' do
     context 'given a graph structure' do
-      a = Vertex.new('a')
-      b = Vertex.new('b')
-      c = Vertex.new('c')
-      d = Vertex.new('d')
-      e = Vertex.new('e')
-      x = Vertex.new('x')
-
-      a.add_undirected_adjacent_vertex(b)
-      a.add_undirected_adjacent_vertex(c)
-      b.add_undirected_adjacent_vertex(d)
-      d.add_undirected_adjacent_vertex(e)
-
       it 'finds the associated vertex if the value exists' do
+        a = Vertex.new('a')
+        b = Vertex.new('b')
+        c = Vertex.new('c')
+        d = Vertex.new('d')
+        e = Vertex.new('e')
+
+        a.add_undirected_adjacent_vertex(b)
+        a.add_undirected_adjacent_vertex(c)
+        b.add_undirected_adjacent_vertex(d)
+        d.add_undirected_adjacent_vertex(e)
+
         result = dfs('c', e)
 
         expect(result).not_to eq(nil)
@@ -55,6 +54,8 @@ describe Vertex do
       end
 
       it 'returns nil if the value does not exist' do
+        x = Vertex.new('x')
+
         result = dfs('c', x)
 
         expect(result).to eq(nil)
