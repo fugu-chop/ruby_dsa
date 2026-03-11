@@ -4,22 +4,21 @@
 class Queue
   attr_reader :head, :tail
 
-  def initialize(value)
-    new_node = DoubleLinkedNode.new(value)
-    @head = new_node
-    @tail = new_node
-  end
-
   # enqueue adds an element to the end of the queue
   #
   # @param value [Any] - the element to add to the queue
   # @return [Node] - returns the Node added
   def enqueue(value)
     new_node = DoubleLinkedNode.new(value)
-    tail.next = new_node
-    new_node.prev = tail
 
-    @head = new_node if @head.nil?
+    if @head.nil?
+      @head = new_node
+      @tail = new_node
+      return new_node
+    end
+
+    @tail.next = new_node
+    new_node.prev = @tail
     @tail = new_node
   end
 

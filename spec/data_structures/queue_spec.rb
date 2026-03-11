@@ -6,7 +6,7 @@ describe Queue do
   describe '#enqueue' do
     context 'when enqueing node to the queue' do
       it 'returns the items pushed' do
-        q = Queue.new(1)
+        q = Queue.new
         expect(q.enqueue(2)).not_to eq(nil)
         expect(q.enqueue(2).value).to eq(2)
         expect(q.enqueue(3)).not_to eq(nil)
@@ -18,15 +18,15 @@ describe Queue do
   describe '#dequeue' do
     context 'when dequeing node from a queue' do
       it 'dequeues items onto in FIFO order' do
-        q = Queue.new(1)
+        q = Queue.new
+        expect(q.enqueue(1).value).to eq(1)
         expect(q.enqueue(2).value).to eq(2)
         expect(q.dequeue.value).to eq(1)
         expect(q.head.value).to eq(2)
         expect(q.dequeue.value).to eq(2)
       end
       it 'handles empty queues gracefully' do
-        q = Queue.new(1)
-        expect(q.dequeue.value).to eq(1)
+        q = Queue.new
         expect(q.dequeue).to eq(nil)
       end
     end
@@ -35,13 +35,13 @@ describe Queue do
   describe '#read' do
     context 'when reading from a queue' do
       it 'reads items FIFO order' do
-        q = Queue.new(1)
+        q = Queue.new
+        expect(q.enqueue(1)).not_to eq(nil)
         expect(q.enqueue(2)).not_to eq(nil)
         expect(q.read).to eq(1)
       end
       it 'handles empty queues gracefully' do
-        q = Queue.new(1)
-        expect(q.dequeue.value).to eq(1)
+        q = Queue.new
         expect(q.read).to eq(nil)
       end
     end
