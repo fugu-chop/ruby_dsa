@@ -34,6 +34,24 @@ describe Vertex do
   end
 end
 
+describe WeightedVertex do
+  describe '#add_directed_adjacent_vertex' do
+    context 'given a vertex' do
+      it 'adds a directed vertex' do
+        a = WeightedVertex.new('a')
+        b = WeightedVertex.new('b')
+        c = WeightedVertex.new('c')
+
+        result = a.add_directed_adjacent_vertex(b, 10)
+
+        expect(result).to eq(b)
+        expect(a.adjacent_vertices['b']).to eq(10)
+        expect(b.adjacent_vertices['a']).to eq(nil)
+      end
+    end
+  end
+end
+
 describe '#dfs' do
   context 'given a graph structure' do
     it 'finds the associated vertex if the value exists' do
