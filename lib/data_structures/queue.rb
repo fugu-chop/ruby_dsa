@@ -7,25 +7,27 @@ class Queue
   # enqueue adds an element to the end of the queue
   #
   # @param value [Any] - the element to add to the queue
-  # @return [Node] - returns the Node added
+  # @return [Any] - returns the `value` added
   def enqueue(value)
     new_node = DoubleLinkedNode.new(value)
 
     if @head.nil?
       @head = new_node
       @tail = new_node
-      return new_node
+      return new_node.value
     end
 
     @tail.next = new_node
     new_node.prev = @tail
     @tail = new_node
+
+    new_node.value
   end
 
   # dequeue removes the first item of the queue
   # and returns it
   #
-  # @return [Node, nil] - returns the node removed,
+  # @return [Any, nil] - returns the `#value` of node removed,
   # or nil if there is no replacement node
   def dequeue
     original = head
@@ -34,7 +36,7 @@ class Queue
     @head = replacement
     @tail = replacement if replacement&.next.nil?
 
-    original
+    original&.value
   end
 
   # read returns the first item of the queue

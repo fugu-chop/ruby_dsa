@@ -8,9 +8,9 @@ describe Queue do
       it 'returns the items pushed' do
         q = Queue.new
         expect(q.enqueue(2)).not_to eq(nil)
-        expect(q.enqueue(2).value).to eq(2)
+        expect(q.enqueue(2)).to eq(2)
         expect(q.enqueue(3)).not_to eq(nil)
-        expect(q.enqueue(3).value).to eq(3)
+        expect(q.enqueue(3)).to eq(3)
       end
     end
   end
@@ -19,11 +19,11 @@ describe Queue do
     context 'when dequeing node from a queue' do
       it 'dequeues items onto in FIFO order' do
         q = Queue.new
-        expect(q.enqueue(1).value).to eq(1)
-        expect(q.enqueue(2).value).to eq(2)
-        expect(q.dequeue.value).to eq(1)
-        expect(q.head.value).to eq(2)
-        expect(q.dequeue.value).to eq(2)
+        expect(q.enqueue(1)).to eq(1)
+        expect(q.enqueue(2)).to eq(2)
+        expect(q.dequeue).to eq(1)
+        expect(q.read).to eq(2)
+        expect(q.dequeue).to eq(2)
       end
       it 'handles empty queues gracefully' do
         q = Queue.new

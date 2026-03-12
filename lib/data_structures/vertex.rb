@@ -82,7 +82,7 @@ def bfs(search_value, search_vertex)
   queue.enqueue(search_vertex)
 
   while queue.read
-    current_vertex = queue.dequeue.value
+    current_vertex = queue.dequeue
     return current_vertex if current_vertex.value == search_value
 
     current_vertex.adjacent_vertices.each_value do |vertex|
