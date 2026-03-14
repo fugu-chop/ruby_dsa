@@ -38,6 +38,14 @@ describe BinaryHeap do
         expect(heap.delete).to eq(25)
         expect(heap.read).to eq(88)
       end
+
+      it 'empties the heap' do
+        heap = BinaryHeap.new
+        expect(heap.insert(PriorityNode.new('100', 100))).to eq(100)
+
+        expect(heap.delete).to eq(100)
+        expect(heap.delete).to eq(nil)
+      end
     end
   end
 end

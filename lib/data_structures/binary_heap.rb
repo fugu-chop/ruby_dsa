@@ -34,7 +34,11 @@ class BinaryHeap
   # @return [Any] - returns the value deleted
   def delete
     popped_value = @heap[0]
-    @heap[0] = @heap.pop
+    if @heap.size > 1
+      @heap[0] = @heap.pop
+    else
+      @heap.pop
+    end
 
     current_idx = 0
 
