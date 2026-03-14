@@ -44,8 +44,8 @@ describe WeightedVertex do
         result = a.add_directed_adjacent_vertex(b, 10)
 
         expect(result).to eq(b)
-        expect(a.adjacent_vertices['b']).to eq(10)
-        expect(b.adjacent_vertices['a']).to eq(nil)
+        expect(a.adjacent_vertices[b]).to eq(10)
+        expect(b.adjacent_vertices[a]).to eq(nil)
       end
     end
   end

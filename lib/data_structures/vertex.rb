@@ -58,7 +58,7 @@ class WeightedVertex
   # two WeightedVertex objects
   # @return [Vertex] - the vertex inserted
   def add_directed_adjacent_vertex(vertex, weight)
-    adjacent_vertices[vertex.value] = weight
+    adjacent_vertices[vertex] = weight
     vertex
   end
 end
