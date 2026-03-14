@@ -110,3 +110,28 @@ describe '#bfs' do
     end
   end
 end
+
+describe 'dijkstra' do
+  context 'given a series of WeightedVertex objects' do
+    it 'returns the shortest path' do
+      atlanta = WeightedVertex.new('atlanta')
+      boston = WeightedVertex.new('boston')
+      chicago = WeightedVertex.new('chicago')
+      denver = WeightedVertex.new('denver')
+      el_paso = WeightedVertex.new('el paso')
+
+      atlanta.add_directed_adjacent_vertex(boston, 100)
+      atlanta.add_directed_adjacent_vertex(denver, 160)
+      boston.add_directed_adjacent_vertex(denver, 180)
+      boston.add_directed_adjacent_vertex(chicago, 120)
+      chicago.add_directed_adjacent_vertex(el_paso, 80)
+      denver.add_directed_adjacent_vertex(chicago, 40)
+      denver.add_directed_adjacent_vertex(el_paso, 140)
+      el_paso.add_directed_adjacent_vertex(boston, 100)
+
+      result = dijkstra(atlanta, el_paso)
+
+      expect(result).to eq(['atlanta', 'denver', 'chicago', 'el paso'])
+    end
+  end
+end

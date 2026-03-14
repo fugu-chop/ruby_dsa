@@ -123,3 +123,57 @@ def bfs(search_value, search_vertex)
 
   nil
 end
+
+# dijkstra attempts to find the lowest weighted
+# path between two weighted vertices
+#
+# @param start_vertex [WeightedVertex] - the
+# starting WeightedVertex
+# @param end_vertex [WeightedVertex] - the
+# ending WeightedVertex
+# @return [Array, nil] - an ordered array of
+# WeightedVertex nodes to traverse from
+# start_vertex to end_vertex, or nil
+# if a path cannot be found
+def dijkstra(start_vertex, end_vertex)
+  lowest_weight_table = {}
+  lowest_previous_vertex = {}
+
+  unvisited_vertices = []
+  visited_vertices = {}
+
+  lowest_weight_table[start_vertex] = 0
+
+  current_vertex = start_vertex
+
+  while current_vertex
+    visited_vertices[current_vertex] = true
+    unvisited_vertices.delete(current_vertex)
+
+    current_vertex.adjacent_vertices.each do |vertex, weight|
+      unvisited_vertices << vertex unless visited_vertices[vertex]
+      weight_through_current_vertex = lowest_weight_table[current_vertex] + weight
+
+      next unless !lowest_weight_table[vertex] ||
+                  weight_through_current_vertex < lowest_weight_table[vertex]
+
+      lowest_weight_table[vertex] = weight_through_current_vertex
+      lowest_previous_vertex[vertex] = current_vertex
+    end
+
+    current_vertex = unvisited_vertices.min do |vertex|
+      lowest_weight_table[vertex]
+    end
+  end
+
+  shortest_path = []
+  current_vertex = end_vertex
+
+  while current_vertex != start_vertex
+    shortest_path << current_vertex.value
+    current_vertex = lowest_previous_vertex[current_vertex]
+  end
+
+  shortest_path << start_vertex.value
+  shortest_path.reverse
+end
