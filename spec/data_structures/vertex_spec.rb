@@ -40,7 +40,6 @@ describe WeightedVertex do
       it 'adds a directed vertex' do
         a = WeightedVertex.new('a')
         b = WeightedVertex.new('b')
-        c = WeightedVertex.new('c')
 
         result = a.add_directed_adjacent_vertex(b, 10)
 
