@@ -150,7 +150,7 @@ def dijkstra(start_vertex, end_vertex)
     visited_vertices[current_vertex] = true
 
     current_vertex.adjacent_vertices.each do |vertex, weight|
-      unvisited_vertices.insert(PriorityNode.new(vertex, weight)) unless visited_vertices[vertex]
+      unvisited_vertices.insert(vertex, weight) unless visited_vertices[vertex]
       weight_through_current_vertex = lowest_weight_table[current_vertex] + weight
 
       next unless !lowest_weight_table[vertex] ||
@@ -160,7 +160,7 @@ def dijkstra(start_vertex, end_vertex)
       lowest_previous_vertex[vertex] = current_vertex
     end
 
-    current_vertex = unvisited_vertices.delete&.value
+    current_vertex = unvisited_vertices.delete
   end
 
   shortest_path = []
