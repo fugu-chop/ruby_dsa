@@ -10,10 +10,12 @@ class BinaryHeap
   # insert adds the value to the heap in a
   # way that preserves the min-heap condition
   #
-  # @param value [Integer] - the value to insert
+  # @param value [Any] - the value to insert
+  # @param weight [Integer] - the weight of the value to insert
   # @return [Any] - returns the value added
-  def insert(value)
-    @heap.push(value)
+  def insert(value, weight)
+    node = PriorityNode.new(value, weight)
+    @heap.push(node)
 
     trickle_idx = @heap.length - 1
 
@@ -34,7 +36,8 @@ class BinaryHeap
   # @return [Any] - returns the value deleted
   def delete
     popped_value = @heap[0]
-    @heap[0] = @heap.pop
+    replacement = @heap.pop
+    @heap[0] = replacement if @heap.size > 1
 
     current_idx = 0
 
@@ -46,7 +49,7 @@ class BinaryHeap
       current_idx = child_idx
     end
 
-    popped_value
+    popped_value&.value
   end
 
   # read returns the root node of the heap; i.e.
