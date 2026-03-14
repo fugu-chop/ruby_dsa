@@ -139,7 +139,7 @@ def dijkstra(start_vertex, end_vertex)
   lowest_weight_table = {}
   lowest_previous_vertex = {}
 
-  unvisited_vertices = []
+  unvisited_vertices = BinaryHeap.new
   visited_vertices = {}
 
   lowest_weight_table[start_vertex] = 0
@@ -148,10 +148,9 @@ def dijkstra(start_vertex, end_vertex)
 
   while current_vertex
     visited_vertices[current_vertex] = true
-    unvisited_vertices.delete(current_vertex)
 
     current_vertex.adjacent_vertices.each do |vertex, weight|
-      unvisited_vertices << vertex unless visited_vertices[vertex]
+      unvisited_vertices.insert(PriorityNode.new(vertex, weight)) unless visited_vertices[vertex]
       weight_through_current_vertex = lowest_weight_table[current_vertex] + weight
 
       next unless !lowest_weight_table[vertex] ||
@@ -161,9 +160,7 @@ def dijkstra(start_vertex, end_vertex)
       lowest_previous_vertex[vertex] = current_vertex
     end
 
-    current_vertex = unvisited_vertices.min do |vertex|
-      lowest_weight_table[vertex]
-    end
+    current_vertex = unvisited_vertices.delete&.value
   end
 
   shortest_path = []
