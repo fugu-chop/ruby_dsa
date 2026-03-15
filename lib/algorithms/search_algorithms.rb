@@ -142,12 +142,10 @@ end
 def dijkstra(start_vertex, end_vertex)
   lowest_weight_table = {}
   lowest_previous_vertex = {}
-
-  unvisited_vertices = BinaryHeap.new
   visited_vertices = {}
+  unvisited_vertices = BinaryHeap.new
 
   lowest_weight_table[start_vertex] = 0
-
   current_vertex = start_vertex
 
   while current_vertex
@@ -155,6 +153,9 @@ def dijkstra(start_vertex, end_vertex)
 
     current_vertex.adjacent_vertices.each do |vertex, weight|
       unvisited_vertices.insert(vertex, weight) unless visited_vertices[vertex]
+      # Calculate the weight of getting from the start_vertex
+      # to the adjacent vertex using the current vertex as the
+      # second-to-last stop
       weight_through_current_vertex = lowest_weight_table[current_vertex] + weight
 
       next unless !lowest_weight_table[vertex] ||
@@ -164,6 +165,10 @@ def dijkstra(start_vertex, end_vertex)
       lowest_previous_vertex[vertex] = current_vertex
     end
 
+    # Use a min-heap binary heap to ensure the next vertex
+    # visited is always the lowest weight unvisited vertex
+    # from the start_vertex (weight increases monotonically)
+    # as it's a greedy algorithm - it still works with a max-heap.
     current_vertex = unvisited_vertices.delete
   end
 
