@@ -8,10 +8,10 @@ describe Graph do
     context 'given a graph' do
       it 'adds a vertex to the graph' do
         g = Graph.new
-        a = Vertex.new('a')
+        a = Vertex.new('a', g)
+        b = Vertex.new('b', g)
 
-        expect(g.add(a)).to eq(a)
-        expect(g.vertices.size).to eq(1)
+        expect(g.vertices.size).to eq(2)
       end
     end
   end

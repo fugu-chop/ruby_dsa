@@ -33,11 +33,12 @@ describe SearchAlgorithms do
   describe '#dfs' do
     context 'given a graph structure' do
       it 'finds the associated vertex if the value exists' do
-        a = Vertex.new('a')
-        b = Vertex.new('b')
-        c = Vertex.new('c')
-        d = Vertex.new('d')
-        e = Vertex.new('e')
+        g = Graph.new
+        a = Vertex.new('a', g)
+        b = Vertex.new('b', g)
+        c = Vertex.new('c', g)
+        d = Vertex.new('d', g)
+        e = Vertex.new('e', g)
 
         a.add_undirected_adjacent_vertex(b)
         a.add_undirected_adjacent_vertex(c)
@@ -51,7 +52,8 @@ describe SearchAlgorithms do
       end
 
       it 'returns nil if the value does not exist' do
-        x = Vertex.new('x')
+        g = Graph.new
+        x = Vertex.new('x', g)
 
         result = dfs('c', x)
 
@@ -63,11 +65,12 @@ describe SearchAlgorithms do
   describe '#bfs' do
     context 'given a graph structure' do
       it 'finds the associated vertex if the value exists' do
-        a = Vertex.new('a')
-        b = Vertex.new('b')
-        c = Vertex.new('c')
-        d = Vertex.new('d')
-        e = Vertex.new('e')
+        g = Graph.new
+        a = Vertex.new('a', g)
+        b = Vertex.new('b', g)
+        c = Vertex.new('c', g)
+        d = Vertex.new('d', g)
+        e = Vertex.new('e', g)
 
         a.add_undirected_adjacent_vertex(b)
         a.add_undirected_adjacent_vertex(c)
@@ -81,7 +84,8 @@ describe SearchAlgorithms do
       end
 
       it 'returns nil if the value does not exist' do
-        x = Vertex.new('x')
+        g = Graph.new
+        x = Vertex.new('x', g)
 
         result = bfs('c', x)
 
@@ -93,11 +97,12 @@ describe SearchAlgorithms do
   describe 'dijkstra' do
     context 'given a series of WeightedVertex objects' do
       it 'returns the shortest path' do
-        atlanta = WeightedVertex.new('atlanta')
-        boston = WeightedVertex.new('boston')
-        chicago = WeightedVertex.new('chicago')
-        denver = WeightedVertex.new('denver')
-        el_paso = WeightedVertex.new('el paso')
+        cities = Graph.new
+        atlanta = WeightedVertex.new('atlanta', cities)
+        boston = WeightedVertex.new('boston', cities)
+        chicago = WeightedVertex.new('chicago', cities)
+        denver = WeightedVertex.new('denver', cities)
+        el_paso = WeightedVertex.new('el paso', cities)
 
         atlanta.add_directed_adjacent_vertex(boston, 100)
         atlanta.add_directed_adjacent_vertex(denver, 160)

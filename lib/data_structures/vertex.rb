@@ -7,9 +7,10 @@ class Vertex
   attr_accessor :adjacent_vertices
   attr_reader :value
 
-  def initialize(value)
+  def initialize(value, graph)
     @value = value
     @adjacent_vertices = {}
+    graph.add(self)
   end
 
   # add_directed_adjacent_vertex adds a vertex
@@ -44,9 +45,10 @@ class WeightedVertex
   attr_accessor :adjacent_vertices
   attr_reader :value
 
-  def initialize(value)
+  def initialize(value, graph)
     @value = value
     @adjacent_vertices = {}
+    graph.add(self)
   end
 
   # add_directed_adjacent_vertex adds a vertex
